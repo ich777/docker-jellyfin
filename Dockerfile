@@ -10,7 +10,7 @@ ARG LEVEL_ZERO_VERSION=1.0.18936
 RUN apt-get update && \
   apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
 
-RUN curl -s https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | apt-key add - && \
+RUN curl -s https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | apt-key add - && \
   echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main' > /etc/apt/sources.list.d/jellyfin.list && \
   apt-get update  &&\
   apt-get -y install --no-install-recommends jellyfin mesa-va-drivers jellyfin-ffmpeg openssl locales && \
