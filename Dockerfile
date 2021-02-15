@@ -13,7 +13,7 @@ RUN apt-get update && \
 RUN curl -s https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | apt-key add - && \
   echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main' > /etc/apt/sources.list.d/jellyfin.list && \
   apt-get update  &&\
-  apt-get -y install --no-install-recommends jellyfin mesa-va-drivers jellyfin-ffmpeg openssl locales && \
+  apt-get -y install --no-install-recommends jellyfin=${BUILD_TAG} mesa-va-drivers jellyfin-ffmpeg openssl locales && \
   mkdir intel-compute-runtime && \
   cd intel-compute-runtime && \
   wget https://github.com/intel/compute-runtime/releases/download/${NEO_VERSION}/intel-gmmlib_${GMMLIB_VERSION}_amd64.deb && \
