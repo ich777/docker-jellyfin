@@ -35,4 +35,4 @@ docker run --name Jellyfin -d \
 
 This Docker was mainly edited for better use with Unraid, if you don't use Unraid you should definitely try it!
  
-#### Support Thread: https://forums.unraid.net/topic/83786-support-ich777-application-dockers/
+#### Support Thread: https://forums.unraid.net/topic/102787-support-ich777-jellyfin-amdintelnvidia/
