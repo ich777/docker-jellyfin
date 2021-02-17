@@ -2,11 +2,7 @@ FROM ich777/debian-baseimage:bullseye
 
 LABEL maintainer="admin@minenet.at"
 
-ARG GMMLIB_VERSION=20.3.2
-ARG IGC_VERSION=1.0.6083
-ARG NEO_VERSION=21.05.18936
-ARG LEVEL_ZERO_VERSION=1.0.18936
-
+ARG MEDIA_DRV_VERSION=20.4.5
 ARG BUILD_TAG="default"
 
 RUN apt-get update && \
@@ -16,17 +12,10 @@ RUN curl -s https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | apt-key add
   echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main unstable' > /etc/apt/sources.list.d/jellyfin.list && \
   apt-get update  &&\
   apt-get -y install --no-install-recommends jellyfin=${BUILD_TAG} mesa-va-drivers jellyfin-ffmpeg openssl locales && \
-  mkdir intel-compute-runtime && \
-  cd intel-compute-runtime && \
-  wget https://github.com/intel/compute-runtime/releases/download/${NEO_VERSION}/intel-gmmlib_${GMMLIB_VERSION}_amd64.deb && \
-  wget https://github.com/intel/intel-graphics-compiler/releases/download/igc-${IGC_VERSION}/intel-igc-core_${IGC_VERSION}_amd64.deb && \
-  wget https://github.com/intel/intel-graphics-compiler/releases/download/igc-${IGC_VERSION}/intel-igc-opencl_${IGC_VERSION}_amd64.deb && \
-  wget https://github.com/intel/compute-runtime/releases/download/${NEO_VERSION}/intel-opencl_${NEO_VERSION}_amd64.deb && \
-  wget https://github.com/intel/compute-runtime/releases/download/${NEO_VERSION}/intel-ocloc_${NEO_VERSION}_amd64.deb && \
-  wget https://github.com/intel/compute-runtime/releases/download/${NEO_VERSION}/intel-level-zero-gpu_${LEVEL_ZERO_VERSION}_amd64.deb && \
-  dpkg -i *.deb && \
-  cd .. && \
-  rm -rf intel-compute-runtime && \
+  wget -O /tmp/intel-media.tar.gz https://github.com/ich777/media-driver/releases/download/intel-media-${MEDIA_DRV_VERSION}/intel-media-${MEDIA_DRV_VERSION}.tar.gz && \
+  cd /tmp && \
+  tar -C / -xvf /tmp/intel-media.tar.gz && \
+  rm -rf /tmp/intel-media.tar.gz && \
   apt-get remove gnupg apt-transport-https curl -y && \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/* && \
