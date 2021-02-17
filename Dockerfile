@@ -4,6 +4,7 @@ LABEL maintainer="admin@minenet.at"
 
 ARG MEDIA_DRV_VERSION=20.4.5
 ARG BUILD_TAG="default"
+ARG RC_TAG="default"
 
 RUN apt-get update && \
   apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
@@ -11,13 +12,13 @@ RUN apt-get update && \
 RUN curl -s https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | apt-key add - && \
   echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main' > /etc/apt/sources.list.d/jellyfin.list && \
   apt-get update  &&\
-  apt-get -y install --no-install-recommends jellyfin=${BUILD_TAG} mesa-va-drivers jellyfin-ffmpeg openssl locales && \
+  wget -O /tmp/jellyfin-server.deb https://repo.jellyfin.org/releases/server/debian/stable-rc/server/jellyfin-server_${BUILD_TAG}~${RC_TAG}_amd64.deb && \
+  wget -O /tmp/jellyfin-web.deb https://repo.jellyfin.org/releases/server/debian/stable-rc/web/jellyfin-web_${BUILD_TAG}~${RC_TAG}_all.deb && \
+  apt-get -y install --no-install-recommends /tmp/jellyfin-server.deb /tmp/jellyfin-web.deb mesa-va-drivers jellyfin-ffmpeg openssl locales && \
   wget -O /tmp/intel-media.tar.gz https://github.com/ich777/media-driver/releases/download/intel-media-${MEDIA_DRV_VERSION}/intel-media-${MEDIA_DRV_VERSION}.tar.gz && \
   cd /tmp && \
   tar -C / -xvf /tmp/intel-media.tar.gz && \
-  rm -rf /tmp/intel-media.tar.gz && \
-  apt-get remove gnupg apt-transport-https curl -y && \
-  apt-get autoremove -y && \
+  rm -rf /tmp/intel-media.tar.gz /tmp/jellyfin-server.deb /tmp/jellyfin-web.deb && \
   rm -rf /var/lib/apt/lists/* && \
   mkdir -p /cache /config /media && \
   chmod 777 /cache /config /media && \
