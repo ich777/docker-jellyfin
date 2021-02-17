@@ -9,7 +9,7 @@ Jellyfin is a Free Software Media System that puts you in control of managing an
 **Intel Hardware transcoding:**
 - Download and install the Intel-GPU-TOP Plugin from the CA App
 - At 'Device' at the bottom here in the template add '/dev/dri'
-- In Jellyfin select the VA-API Transcoder at 'Playback' in the Admin section and enable: 'h264', 'HEVC', 'VC1', 'VP9', 'VP8', at the bottom 'Throttle Transcoding' and click 'Save'.
+- In Jellyfin select the Intel Quick Sync Transcoder at 'Playback' in the Admin section and enable: 'h264', 'HEVC', 'VC1', 'VP9', 'VP8', at the bottom 'Throttle Transcoding' and click 'Save'.
 
 **Nvidia Hardware transcoding:**
 - Download and install the Nvidia-Driver Plugin from the CA App
