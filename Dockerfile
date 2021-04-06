@@ -2,8 +2,8 @@ FROM ich777/debian-baseimage:bullseye
 
 LABEL maintainer="admin@minenet.at"
 
-ARG MEDIA_DRV_VERSION=21.1.3
-ARG BUILD_TAG=BUILD_TAG
+ARG MEDIA_DRV_VERSION=default
+ARG BUILD_TAG=default
 
 RUN apt-get update && \
   apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
