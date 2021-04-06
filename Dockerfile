@@ -2,8 +2,8 @@ FROM ich777/debian-baseimage:bullseye
 
 LABEL maintainer="admin@minenet.at"
 
-ARG MEDIA_DRV_VERSION="$(wget -qO- https://api.github.com/repos/ich777/media-driver/releases/latest | grep "tag_name" | cut -d '"' -f4 | cut -d '-' -f3)"
-ARG BUILD_TAG="$(wget -qO- https://github.com/ich777/versions/raw/master/Jellyfin | grep LATEST | cut -d '=' -f2 | cut -d '-' -f1)"
+ARG MEDIA_DRV_VERSION=21.1.3
+ARG BUILD_TAG=10.7.1
 
 RUN apt-get update && \
   apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
