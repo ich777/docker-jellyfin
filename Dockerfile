@@ -2,7 +2,7 @@ FROM ich777/debian-baseimage:bullseye
 
 LABEL maintainer="admin@minenet.at"
 
-ARG MEDIA_DRV_VERSION=20.4.5
+ARG MEDIA_DRV_VERSION="$(wget -qO- https://api.github.com/repos/ich777/media-driver/releases/latest | grep "tag_name" | cut -d '"' -f4 | cut -d '-' -f3)"
 ARG BUILD_TAG="default"
 
 RUN apt-get update && \
