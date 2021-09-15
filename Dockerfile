@@ -8,7 +8,7 @@ ARG BUILD_TAG="default"
 RUN apt-get update && \
   apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
 
-RUN curl -s https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | apt-key add - && \
+RUN curl -s https://repo.jellyfin.org/jellyfin_team.gpg.key | apt-key add - && \
   echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main unstable' > /etc/apt/sources.list.d/jellyfin.list && \
   apt-get update  &&\
   apt-get -y install --no-install-recommends jellyfin=${BUILD_TAG} mesa-va-drivers jellyfin-ffmpeg openssl locales && \
