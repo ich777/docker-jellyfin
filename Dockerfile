@@ -10,10 +10,10 @@ RUN apt-get update && \
   apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
 
 RUN curl -s https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | apt-key add - && \
-  echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main unstable' > /etc/apt/sources.list.d/jellyfin.list && \
+  echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main' > /etc/apt/sources.list.d/jellyfin.list && \
   apt-get update  &&\
-  wget -O /tmp/jellyfin-server.deb https://repo.jellyfin.org/releases/server/debian/stable-rc/server/jellyfin-server_${BUILD_TAG}~${RC_TAG}_amd64.deb && \
-  wget -O /tmp/jellyfin-web.deb https://repo.jellyfin.org/releases/server/debian/stable-rc/web/jellyfin-web_${BUILD_TAG}~${RC_TAG}_all.deb && \
+  wget -O /tmp/jellyfin-server.deb https://repo.jellyfin.org/releases/server/debian/stable-pre/${BUILD_TAG}-${RC_TAG}/server/jellyfin-server_${BUILD_TAG}-${RC_TAG##*[^0-9]}_amd64.deb && \
+  wget -O /tmp/jellyfin-web.deb https://repo.jellyfin.org/releases/server/debian/stable-pre/${BUILD_TAG}-${RC_TAG}/web/jellyfin-web_${BUILD_TAG}-${RC_TAG##*[^0-9]}_all.deb && \
   apt-get -y install --no-install-recommends /tmp/jellyfin-server.deb /tmp/jellyfin-web.deb mesa-va-drivers jellyfin-ffmpeg openssl locales && \
   wget -O /tmp/intel-media.tar.gz https://github.com/ich777/media-driver/releases/download/intel-media-${MEDIA_DRV_VERSION}/intel-media-${MEDIA_DRV_VERSION}.tar.gz && \
   cd /tmp && \
