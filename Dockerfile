@@ -6,7 +6,7 @@ ARG MEDIA_DRV_VERSION=21.2.3
 ARG BUILD_TAG="default"
 
 RUN apt-get update && \
-  apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
+  apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl nvidia-opencl-icd intel-opencl-icd mesa-opencl-icd
 
 RUN curl -s https://repo.jellyfin.org/jellyfin_team.gpg.key | apt-key add - && \
   echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main unstable' > /etc/apt/sources.list.d/jellyfin.list && \
