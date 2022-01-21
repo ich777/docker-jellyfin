@@ -7,7 +7,7 @@ ARG BUILD_TAG="default"
 ARG RC_TAG="default"
 
 RUN apt-get update && \
-  apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl
+  apt-get -y install --no-install-recommends ca-certificates gnupg wget xz-utils apt-transport-https curl nvidia-opencl-icd intel-opencl-icd mesa-opencl-icd
 
 RUN curl -s https://repo.jellyfin.org/debian/jellyfin_team.gpg.key | apt-key add - && \
   echo 'deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main' > /etc/apt/sources.list.d/jellyfin.list && \
