@@ -35,6 +35,20 @@ term_handler() {
 	exit 143;
 }
 
+echo "+---------------------------------------------------"
+echo "| This container is now depricated!"
+echo "| Please use the official Jellyfin container!"
+echo "|"
+echo "| This container is fully compatible to the official"
+echo "| one, please use the official container!"
+echo "|"
+echo "| To do that just change the repository"
+echo "| from 'ich777/jellyfin' to 'jellyfin/jellyfin'"
+echo "+---------------------------------------------------"
+echo
+echo "---Container will start in 5 minutes!---"
+sleep 5m
+
 trap 'kill ${!}; term_handler' SIGTERM
 su ${USER} -c "/usr/bin/jellyfin --datadir /config --cachedir /cache --ffmpeg /usr/lib/jellyfin-ffmpeg/ffmpeg --webdir=/usr/share/jellyfin/web" &
 killpid="$!"
