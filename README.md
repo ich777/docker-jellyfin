@@ -1,3 +1,6 @@
+# DEPRECATED - Please use the jellyfin/jellyfin repository instead!
+## The container is fully compatible with the official Jellyfin container, just change the repository from ich777/jellyfin to jellyfin/jellyfin
+
 # Jellyfin in Docker optimized for Unraid
 Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps.
 
